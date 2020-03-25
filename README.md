@@ -5,6 +5,11 @@ Generate single copy k-mer sites in a given assembly, as described in the [Miga 
 These locus were used for marker assisted mapping to avoid mapping biases due to assembly errors.
 The script provided here generates marker sites in the assembly where the k-mer is unique (found only once) in the assembly and is coming from the single copy peak from the Illumina read set (collected from barcode trimmed 10X Genomics reads).
 
+* mem: 10~12 Gb
+
+* cpu: available cpus, up to 64
+
+
 1. Download the CHM13 single copy k-mer meryl database from [here](https://s3.amazonaws.com/nanopore-human-wgs/chm13/10x/meryl/CHM13.10X.k21.gt5.lt58.meryl.tar).
 ```bash
 # Untar
