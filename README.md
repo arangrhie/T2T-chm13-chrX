@@ -34,8 +34,13 @@ meryl intersect 10X_single.meryl asm_1.meryl output markers.meryl
 meryl-lookup -dump -memory 12 -sequence $chr.fasta -mers markers.meryl | awk -F "\t" '$(NF-4)=="T" {print $1"\t"$(NF-5)"\t"$(NF-5)+21"\t"($(NF-2)+$NF}' > ${chr}_markers.bed
 ```
 
-4. Optionally, generate marker density track with [IGVtools](http://software.broadinstitute.org/software/igv/download)
+Once `markers.meryl` are generated, `collect_single_copy_kmers.sh` can be run in parallel for each sequence(contig or scaffold) in `asm.fasta`. When no specific sequence ID ($chr) is provided, it may take several hours to generate the complete markers.bed.
+
+4. Optionally, generate marker density track loadable to IGV with [IGVtools](http://software.broadinstitute.org/software/igv/download)
 ```
 cat *_markers.bed > markers.bed
 igvtools count markers.bed markers.tdf asm.fasta.fai
 ```
+
+The last column in markers.bed contains the k-mer frequency found in the Illumina read set. This can be used to further stratify more confident markers.
+
